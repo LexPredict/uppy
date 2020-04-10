@@ -1,0 +1,47 @@
+{
+  "name": "@uppy/robodog",
+  "description": "Transloadit SDK for browsers based on Uppy",
+  "version": "1.6.2",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "jsnext:main": "src/index.js",
+  "types": "types/index.d.ts",
+  "keywords": [
+    "file uploader",
+    "transloadit",
+    "file encoding",
+    "encoding",
+    "file processing",
+    "video encoding",
+    "crop",
+    "resize",
+    "watermark",
+    "uppy",
+    "uppy-plugin"
+  ],
+  "homepage": "https://uppy.io",
+  "bugs": {
+    "url": "https://github.com/transloadit/uppy/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/transloadit/uppy.git"
+  },
+  "dependencies": {
+    "@uppy/core": "file:../core",
+    "@uppy/dashboard": "file:../dashboard",
+    "@uppy/dropbox": "file:../dropbox",
+    "@uppy/facebook": "file:../facebook",
+    "@uppy/form": "file:../form",
+    "@uppy/google-drive": "file:../google-drive",
+    "@uppy/instagram": "file:../instagram",
+    "@uppy/onedrive": "file:../onedrive",
+    "@uppy/status-bar": "file:../status-bar",
+    "@uppy/transloadit": "file:../transloadit",
+    "@uppy/url": "file:../url",
+    "@uppy/utils": "file:../utils",
+    "@uppy/webcam": "file:../webcam",
+    "es6-promise": "4.2.5",
+    "whatwg-fetch": "3.0.0"
+  }
+}

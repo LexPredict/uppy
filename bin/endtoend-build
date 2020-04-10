@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+set -o pipefail
+set -o errexit
+set -o nounset
+set -o xtrace
+
+# Set magic variables for current file & dir
+__dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+__file="${__dir}/$(basename "${BASH_SOURCE[0]}")"
+__base="$(basename ${__file} .sh)"
+__root="$(cd "$(dirname "${__dir}")" && pwd)"
+
+echo "Preparing for end to end test: copying static HTML and CSS, building JS"
+rm -rf "${__root}/test/endtoend/node_modules"
+
+npm run build
+
+# Allow integration tests to resolve @uppy packages
+ln -s "${__root}/packages" "${__root}/test/endtoend/node_modules"
+
+bash "${__dir}/endtoend-build-tests"
+
+rm "${__root}/test/endtoend/node_modules"

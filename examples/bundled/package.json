@@ -1,0 +1,19 @@
+{
+  "name": "@uppy-example/bundled",
+  "dependencies": {
+    "@babel/core": "^7.4.4",
+    "@uppy/core": "file:../../packages/@uppy/core",
+    "@uppy/dashboard": "file:../../packages/@uppy/dashboard",
+    "@uppy/google-drive": "file:../../packages/@uppy/google-drive",
+    "@uppy/instagram": "file:../../packages/@uppy/instagram",
+    "@uppy/tus": "file:../../packages/@uppy/tus",
+    "@uppy/url": "file:../../packages/@uppy/url",
+    "@uppy/webcam": "file:../../packages/@uppy/webcam",
+    "parcel-bundler": "^1.11.0"
+  },
+  "private": true,
+  "scripts": {
+    "build": "parcel build index.html",
+    "dev": "parcel index.html"
+  }
+}
