@@ -6,6 +6,7 @@ nohup.out
 node_modules
 .cache
 .eslintcache
+.idea
 
 env.sh
 
