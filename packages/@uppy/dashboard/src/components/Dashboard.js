@@ -49,6 +49,7 @@ module.exports = function Dashboard (props) {
   })
 
   const showFileList = props.showSelectedFiles && !noFiles
+  const fileCount = props.totalFileCount;
 
   return (
     <div
@@ -98,13 +99,15 @@ module.exports = function Dashboard (props) {
 
           {showFileList && <PanelTopBar {...props} />}
 
-{/*          {showFileList ? (
-            <FileList {...props} />
+          {showFileList ? (
+
+              fileCount < 1001 ?
+              <FileList {...props} />
+              : <div class="preview-locked">Files preview is hidden for performance reason.</div>
+
           ) : (
             <AddFiles {...props} isSizeMD={isSizeMD} />
-          )}*/}
-
-          <AddFiles {...props} isSizeMD={isSizeMD} />
+          )}
 
           <TransitionWrapper>
             {props.showAddFilesPanel ? <AddFilesPanel key="AddFilesPanel" {...props} isSizeMD={isSizeMD} /> : null}
