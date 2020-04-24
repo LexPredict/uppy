@@ -1,10 +1,13 @@
 #!/bin/sh
 
+cd "$(dirname "$0")"
+
 CHECKSUM_FILE=".tmp.txt"
 PACKAGE_LOCK_FILE="package-lock.json"
 
 if [ ! -f "$CHECKSUM_FILE" ]; then
-   echo "0" >> $CHECKSUM_FILE
+echo "test"
+   echo "0" > $CHECKSUM_FILE
 fi
 
 prev_checksum=`cat $CHECKSUM_FILE`
@@ -15,4 +18,5 @@ if [ "$prev_checksum" = "$current_checksum" ]; then
 else
     printf "Uppy: checksums are not equal. Installing modules...\n"
     npm install && npm run build:lib
+    echo $current_checksum > $CHECKSUM_FILE
 fi
