@@ -9,8 +9,8 @@ if [ ! -f "$CHECKSUM_FILE" ]; then
    echo "0" > $CHECKSUM_FILE
 fi
 
-prev_checksum=`cat $CHECKSUM_FILE`
-current_checksum=`md5sum $PACKAGE_LOCK_FILE`
+prev_checksum=`cat $CHECKSUM_FILE | xargs`
+current_checksum=`md5sum $PACKAGE_LOCK_FILE | xargs`
 
 if [ "$prev_checksum" = "$current_checksum" ]; then
     printf "Checksums are equal. \n"
