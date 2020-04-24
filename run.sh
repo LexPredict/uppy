@@ -5,7 +5,7 @@ cd "$(dirname "$0")"
 CHECKSUM_FILE=".tmp.txt"
 PACKAGE_LOCK_FILE="package-lock.json"
 
-if [ ! -f "$CHECKSUM_FILE" ]; then
+if [ ! -f "$CHECKSUM_FILE" ] || [ ! -d "node_modules" ]; then
    echo "0" > $CHECKSUM_FILE
 fi
 
