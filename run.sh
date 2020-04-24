@@ -6,7 +6,6 @@ CHECKSUM_FILE=".tmp.txt"
 PACKAGE_LOCK_FILE="package-lock.json"
 
 if [ ! -f "$CHECKSUM_FILE" ]; then
-echo "test"
    echo "0" > $CHECKSUM_FILE
 fi
 
