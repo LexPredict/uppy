@@ -7,7 +7,14 @@ class AddFiles extends Component {
   }
 
   onFileInputChange = (event) => {
-    this.props.handleInputChange(event)
+    const elem = document.getElementsByClassName("uppy-Dashboard-AddFiles-title")[0];
+    elem.innerHTML = "<div class='uppy-loader'><span class='preloader-label'>Adding files...</span><div class='preloader'></div></div>";
+
+    setTimeout(() => {
+      this.props.handleInputChange(event)
+
+      event.target.value = null
+    }, 100)
 
     // We clear the input after a file is selected, because otherwise
     // change event is not fired in Chrome and Safari when a file
@@ -15,7 +22,6 @@ class AddFiles extends Component {
     // ___Why not use value="" on <input/> instead?
     //    Because if we use that method of clearing the input,
     //    Chrome will not trigger change if we drop the same file twice (Issue #768).
-    event.target.value = null
   }
 
   renderPoweredByUppy () {
