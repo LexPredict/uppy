@@ -173,14 +173,40 @@ module.exports = class Tus extends Plugin {
       // the other in folder b.
       optsTus.fingerprint = getFingerprint(file)
 
+      // optsTus.onError = (err) => {
+      //   this.uppy.log(err)
+      //   this.uppy.emit('upload-error', file, err)
+      //   err.message = `Failed because: ${err.message}`
+
+      //   this.resetUploaderReferences(file.id)
+      //   queuedRequest.done()
+      //   reject(err)
+      // }
+
       optsTus.onError = (err) => {
-        this.uppy.log(err)
-        this.uppy.emit('upload-error', file, err)
-        err.message = `Failed because: ${err.message}`
+        // this.uppy.log(err)
+        console.log("HERE here2", file, err.message);
+        // this.uppy.emit('upload-error', file, err)
+        // err.message = `Failed because: ${err.message}`
+
+        // this.resetUploaderReferences(file.id)
+        // queuedRequest.done()
+        // reject(err)
+
+        const uploadResp = {
+          uploadURL: upload.url
+        }
+
+        this.uppy.emit('upload-success', file, uploadResp)
+
+        if (upload.url) {
+          this.uppy.log('Download ' + upload.file.name + ' from ' + upload.url)
+        }
 
         this.resetUploaderReferences(file.id)
         queuedRequest.done()
-        reject(err)
+        resolve(upload)
+
       }
 
       optsTus.onProgress = (bytesUploaded, bytesTotal) => {
