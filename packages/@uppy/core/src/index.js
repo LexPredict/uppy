@@ -1055,6 +1055,8 @@ class Uppy {
         return
       }
 
+      console.log(file, "file");
+
       const currentProgress = this.getFile(file.id).progress
       this.setFileState(file.id, {
         progress: Object.assign({}, currentProgress, {
