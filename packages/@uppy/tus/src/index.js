@@ -199,10 +199,10 @@ module.exports = class Tus extends Plugin {
 
         const { message } = err;
         if (message.includes("status")) {
-          const status = JSON.parse(message.substring(message.indexOf('{'), message.lastIndexOf('}') + 1));
-          console.log(status);
+          const fileStatus = JSON.parse(message.substring(message.indexOf('{'), message.lastIndexOf('}') + 1));
+          console.log(fileStatus);
 
-          file[status] = true
+          file[fileStatus.status] = true
 
           this.uppy.emit('upload-success', file, uploadResp)
         }
