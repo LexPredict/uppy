@@ -203,14 +203,15 @@ module.exports = class Tus extends Plugin {
           console.log(status);
 
           file[status] = true
+
+          this.uppy.emit('upload-success', file, uploadResp)
         }
         else {
           status = "exist";
           file[status] = true
+
+          this.uppy.emit('upload-success', file, uploadResp)
         }
-
-
-        this.uppy.emit('upload-success', file, uploadResp)
 
         if (upload.url) {
           this.uppy.log('Download ' + upload.file.name + ' from ' + upload.url)
