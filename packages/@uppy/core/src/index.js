@@ -1064,7 +1064,10 @@ class Uppy {
         }),
         response: uploadResp,
         uploadURL: uploadResp.uploadURL,
-        isPaused: false
+        isPaused: false,
+        exist: file.hasOwnProperty("exist"),
+        empty: file.hasOwnProperty("empty"),
+        delete_pending: file.hasOwnProperty("delete_pending")
       })
 
       this._calculateTotalProgress()

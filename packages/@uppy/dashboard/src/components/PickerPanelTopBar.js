@@ -76,6 +76,8 @@ function PanelTopBar (props) {
     allowNewUpload = props.totalFileCount < props.maxNumberOfFiles
   }
 
+  const { duplicates, emptyFiles, deletePending } = props;
+
   return (
     <div class="uppy-DashboardContent-bar">
       {!props.isAllComplete && !props.hideCancelButton ? (
@@ -91,7 +93,27 @@ function PanelTopBar (props) {
       )}
 
       <div class="uppy-DashboardContent-title" role="heading" aria-level="1">
-        <UploadStatus {...props} />
+        <span>
+          <UploadStatus {...props} />
+        </span>
+        {
+          duplicates.length > 0 &&
+            <span class="status-label">
+              {duplicates.length} Duplicated
+            </span>
+        }
+        {
+          emptyFiles.length > 0 &&
+            <span class="status-label">
+              {emptyFiles.length} Empty
+            </span>
+        }
+        {
+          deletePending.length > 0 &&
+            <span class="status-label">
+              {deletePending.length} Deleted
+            </span>
+        }
       </div>
 
       {allowNewUpload ? (
