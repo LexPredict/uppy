@@ -223,7 +223,7 @@
   padding-top: 15px;
   padding-bottom: 15px;
   margin-top: auto;
-  
+
   // hide on short note and “powered by” on short screens
   // such as CodePen, or inline dashboard with height < 400px
   display: none;
@@ -474,6 +474,10 @@
 
     [data-uppy-theme="dark"] & {
       color: $gray-200;
+    }
+
+    .status-label {
+      margin-left: 10px;
     }
   }
 

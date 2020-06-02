@@ -753,6 +753,18 @@ module.exports = class Dashboard extends Plugin {
       return !files[file].isPaused
     })
 
+    const duplicates = Object.keys(files).filter((file) => {
+      return files[file].exist
+    })
+
+    const emptyFiles = Object.keys(files).filter((file) => {
+      return files[file].empty
+    })
+
+    const deletePending = Object.keys(files).filter((file) => {
+      return files[file].delete_pending
+    })
+
     const processingFiles = Object.keys(files).filter((file) => {
       return files[file].progress.preprocess || files[file].progress.postprocess
     })
@@ -789,6 +801,9 @@ module.exports = class Dashboard extends Plugin {
       erroredFiles,
       inProgressFiles,
       inProgressNotPausedFiles,
+      duplicates,
+      emptyFiles,
+      deletePending,
       processingFiles,
       isUploadStarted,
       isAllComplete,

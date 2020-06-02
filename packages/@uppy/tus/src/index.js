@@ -185,7 +185,7 @@ module.exports = class Tus extends Plugin {
 
       optsTus.onError = (err) => {
         // this.uppy.log(err)
-        console.log("HERE here2", file, err.message);
+        // console.log("HERE here2", file, err.message);
         // this.uppy.emit('upload-error', file, err)
         // err.message = `Failed because: ${err.message}`
 
@@ -197,6 +197,19 @@ module.exports = class Tus extends Plugin {
           uploadURL: upload.url
         }
 
+        const { message } = err;
+        if (message.includes("status")) {
+          const status = JSON.parse(message.substring(message.indexOf('{'), message.lastIndexOf('}') + 1));
+          console.log(status);
+
+          file[status] = true
+        }
+        else {
+          status = "exist";
+          file[status] = true
+        }
+
+
         this.uppy.emit('upload-success', file, uploadResp)
 
         if (upload.url) {
@@ -206,7 +219,6 @@ module.exports = class Tus extends Plugin {
         this.resetUploaderReferences(file.id)
         queuedRequest.done()
         resolve(upload)
-
       }
 
       optsTus.onProgress = (bytesUploaded, bytesTotal) => {
