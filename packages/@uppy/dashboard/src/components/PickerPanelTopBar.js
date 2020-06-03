@@ -111,7 +111,7 @@ function PanelTopBar (props) {
         {
           deletePending.length > 0 &&
             <span class="status-label">
-              {deletePending.length} Deleted
+              {deletePending.length} Pending deletion
             </span>
         }
       </div>
