@@ -199,18 +199,39 @@ module.exports = class Tus extends Plugin {
 
         const { message } = err;
         if (message.includes("status")) {
-          const fileStatus = JSON.parse(message.substring(message.indexOf('{'), message.lastIndexOf('}') + 1));
-          console.log(fileStatus);
+          const status_message = JSON.parse(message.substring(message.indexOf('{'), message.lastIndexOf('}') + 1));
+          console.log(status);
 
-          file[fileStatus.status] = true
+          file[status_message.status] = true
 
-          this.uppy.emit('upload-success', file, uploadResp)
+          if (status_message.status == "delete_pending") {
+            this.uppy.setState({ pause: true })
+            this.uppy.emit("upload-pending", file, uploadResp);
+          }
+          else {
+            this.uppy.emit('upload-success', file, uploadResp)
+          }
         }
         else {
-          status = "exist";
-          file[status] = true
 
-          this.uppy.emit('upload-success', file, uploadResp)
+          file.delete_pending = true
+
+          // this.uppy.log(err)
+          // console.log("HERE here2", file, err.message);
+          // this.uppy.emit('upload-error', file, err)
+          // err.message = `Failed because: ${err.message}`
+
+          // this.resetUploaderReferences(file.id)
+          // queuedRequest.done()
+          // reject(err)
+          this.uppy.setState({ pause: true })
+          this.uppy.emit("upload-pending", file, uploadResp);
+
+          console.log("FILE", file);
+          // status = "exist";
+          // file[status] = true
+
+          // this.uppy.emit('upload-success', file, uploadResp)
         }
 
         if (upload.url) {
