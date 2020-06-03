@@ -1065,7 +1065,7 @@ class Uppy {
         response: uploadResp,
         uploadURL: uploadResp.uploadURL,
         isPaused: false,
-        exist: file.hasOwnProperty("exist"),
+        exist: file.hasOwnProperty("exists"),
         empty: file.hasOwnProperty("empty"),
         delete_pending: file.hasOwnProperty("delete_pending")
       })
