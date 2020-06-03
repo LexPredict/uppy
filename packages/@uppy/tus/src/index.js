@@ -200,7 +200,7 @@ module.exports = class Tus extends Plugin {
         const { message } = err;
         if (message.includes("status")) {
           const status_message = JSON.parse(message.substring(message.indexOf('{'), message.lastIndexOf('}') + 1));
-          console.log(status);
+          console.log(status_message);
 
           file[status_message.status] = true
 
@@ -209,6 +209,7 @@ module.exports = class Tus extends Plugin {
             this.uppy.emit("upload-pending", file, uploadResp);
           }
           else {
+            console.log(file);
             this.uppy.emit('upload-success', file, uploadResp)
           }
         }
