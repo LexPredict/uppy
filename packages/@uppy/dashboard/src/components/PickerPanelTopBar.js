@@ -99,19 +99,19 @@ function PanelTopBar (props) {
         {
           duplicates.length > 0 &&
             <span class="status-label">
-              {duplicates.length} Duplicated
+              Duplicated - {duplicates.length}
             </span>
         }
         {
           emptyFiles.length > 0 &&
             <span class="status-label">
-              {emptyFiles.length} Empty
+              Empty - {emptyFiles.length}
             </span>
         }
         {
           deletePending.length > 0 &&
             <span class="status-label">
-              {deletePending.length} Pending deletion
+             Pending deletion - {deletePending.length}
             </span>
         }
       </div>
