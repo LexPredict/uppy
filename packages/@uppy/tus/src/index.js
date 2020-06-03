@@ -212,36 +212,33 @@ module.exports = class Tus extends Plugin {
             console.log(file);
             this.uppy.emit('upload-success', file, uploadResp)
           }
+
+          this.resetUploaderReferences(file.id)
+          queuedRequest.done()
+          resolve(upload)
+
         }
         else {
 
-          file.delete_pending = true
+          // file.delete_pending = true
 
-          // this.uppy.log(err)
-          // console.log("HERE here2", file, err.message);
-          // this.uppy.emit('upload-error', file, err)
-          // err.message = `Failed because: ${err.message}`
+          // this.uppy.setState({ pause: true })
+          // this.uppy.emit("upload-pending", file, uploadResp);
 
-          // this.resetUploaderReferences(file.id)
-          // queuedRequest.done()
-          // reject(err)
-          this.uppy.setState({ pause: true })
-          this.uppy.emit("upload-pending", file, uploadResp);
+          // console.log("FILE", file);
 
-          console.log("FILE", file);
-          // status = "exist";
-          // file[status] = true
+          this.uppy.log(err)
+          this.uppy.emit('upload-error', file, err)
+          err.message = `Failed because: ${err.message}`
 
-          // this.uppy.emit('upload-success', file, uploadResp)
+          this.resetUploaderReferences(file.id)
+          queuedRequest.done()
+          reject(err)
         }
 
         if (upload.url) {
           this.uppy.log('Download ' + upload.file.name + ' from ' + upload.url)
         }
-
-        this.resetUploaderReferences(file.id)
-        queuedRequest.done()
-        resolve(upload)
       }
 
       optsTus.onProgress = (bytesUploaded, bytesTotal) => {
