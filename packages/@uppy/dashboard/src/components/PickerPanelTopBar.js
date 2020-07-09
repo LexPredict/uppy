@@ -77,10 +77,11 @@ function PanelTopBar (props) {
   }
 
   const { duplicates, emptyFiles, deletePending } = props;
+  // {!props.isAllComplete && !props.hideCancelButton ? (
 
   return (
     <div class="uppy-DashboardContent-bar">
-      {!props.isAllComplete && !props.hideCancelButton ? (
+      {!props.isAllComplete ? (
         <button
           class="uppy-DashboardContent-back"
           type="button"
