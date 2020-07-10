@@ -81,7 +81,7 @@ function PanelTopBar (props) {
 
   return (
     <div class="uppy-DashboardContent-bar">
-      {!props.isAllComplete ? (
+      {!props.isAllComplete && !props.inProgressFiles.length ? (
         <button
           class="uppy-DashboardContent-back"
           type="button"
