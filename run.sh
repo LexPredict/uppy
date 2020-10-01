@@ -1,6 +1,7 @@
 #!/bin/sh
 
-cd "$(dirname "$0")"
+# This script is intended from running inside its parent dir.
+# Please cd to this dir first.
 
 CHECKSUM_FILE=".tmp.txt"
 PACKAGE_LOCK_FILE="package-lock.json"
