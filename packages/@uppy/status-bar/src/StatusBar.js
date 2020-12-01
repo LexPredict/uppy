@@ -283,11 +283,11 @@ const ProgressDetails = (props) => {
 
         {renderDot()}
 
-        {
+{/*        {
           props.i18n('xTimeLeft', {
             time: prettyETA(props.totalETA)
           })
-        }
+        }*/}
       </span>
     </div>
   )
