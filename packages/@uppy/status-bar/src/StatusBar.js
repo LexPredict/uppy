@@ -145,6 +145,7 @@ const UploadBtn = (props) => {
     'uppy-c-btn',
     'uppy-StatusBar-actionBtn',
     'uppy-StatusBar-actionBtn--upload',
+    'testttttt',
     { 'uppy-c-btn-primary': props.uploadState === statusBarStates.STATE_WAITING }
   )
 
@@ -153,7 +154,17 @@ const UploadBtn = (props) => {
       type="button"
       class={uploadBtnClassNames}
       aria-label={props.i18n('uploadXFiles', { smart_count: props.newFiles })}
-      onclick={props.startUpload}
+      onclick={() => {
+        console.log("onClick", " --- ", props);
+        if (props.uploadState === statusBarStates.STATE_WAITING) {
+          var elem = document.getElementsByClassName("preview-locked")[0];
+          elem.innerHTML = "<div class='uppy-loader'><span" +
+                           " class='preloader-label'>Loading...</span><div" +
+                           " class='preloader'></div></div>";
+        }
+
+        return props.startUpload();
+      }}
       data-uppy-super-focusable
     >
       {props.newFiles && props.isUploadStarted
