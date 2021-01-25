@@ -95,17 +95,17 @@ module.exports = (props) => {
 
   const width = typeof progressValue === 'number' ? progressValue : 100
   const isHidden = (uploadState === statusBarStates.STATE_WAITING && props.hideUploadButton) ||
-    (uploadState === statusBarStates.STATE_WAITING && !props.newFiles > 0) ||
-    (uploadState === statusBarStates.STATE_COMPLETE && props.hideAfterFinish)
+                   (uploadState === statusBarStates.STATE_WAITING && !props.newFiles > 0) ||
+                   (uploadState === statusBarStates.STATE_COMPLETE && props.hideAfterFinish)
 
   const showUploadBtn = !error && newFiles &&
-    !isUploadInProgress && !isAllPaused &&
-    allowNewUpload && !hideUploadButton
+                        !isUploadInProgress && !isAllPaused &&
+                        allowNewUpload && !hideUploadButton
   const showCancelBtn = !hideCancelButton &&
-    uploadState !== statusBarStates.STATE_WAITING &&
-    uploadState !== statusBarStates.STATE_COMPLETE
+                        uploadState !== statusBarStates.STATE_WAITING &&
+                        uploadState !== statusBarStates.STATE_COMPLETE
   const showPauseResumeBtn = resumableUploads && !hidePauseResumeButton &&
-    uploadState === statusBarStates.STATE_UPLOADING
+                             uploadState === statusBarStates.STATE_UPLOADING
 
   const showRetryBtn = error && !hideRetryButton
 
@@ -145,7 +145,6 @@ const UploadBtn = (props) => {
     'uppy-c-btn',
     'uppy-StatusBar-actionBtn',
     'uppy-StatusBar-actionBtn--upload',
-    'testttttt',
     { 'uppy-c-btn-primary': props.uploadState === statusBarStates.STATE_WAITING }
   )
 
@@ -154,17 +153,7 @@ const UploadBtn = (props) => {
       type="button"
       class={uploadBtnClassNames}
       aria-label={props.i18n('uploadXFiles', { smart_count: props.newFiles })}
-      onclick={() => {
-        console.log("onClick", " --- ", props);
-        if (props.uploadState === statusBarStates.STATE_WAITING) {
-          var elem = document.getElementsByClassName("preview-locked")[0];
-          elem.innerHTML = "<div class='uppy-loader'><span" +
-                           " class='preloader-label'>Loading...</span><div" +
-                           " class='preloader'></div></div>";
-        }
-
-        return props.startUpload();
-      }}
+      onclick={props.startUpload}
       data-uppy-super-focusable
     >
       {props.newFiles && props.isUploadStarted
@@ -280,9 +269,9 @@ const ProgressDetails = (props) => {
       }
       <span class="uppy-StatusBar-additionalInfo">
         {/* When should we render this dot?
-          1. .-additionalInfo is shown (happens only on desktops)
-          2. AND 'filesUploadedOfTotal' was shown
-        */}
+         1. .-additionalInfo is shown (happens only on desktops)
+         2. AND 'filesUploadedOfTotal' was shown
+         */}
         {ifShowFilesUploadedOfTotal && renderDot()}
 
         {
@@ -294,11 +283,11 @@ const ProgressDetails = (props) => {
 
         {renderDot()}
 
-{/*        {
-          props.i18n('xTimeLeft', {
-            time: prettyETA(props.totalETA)
-          })
-        }*/}
+        {/*        {
+         props.i18n('xTimeLeft', {
+         time: prettyETA(props.totalETA)
+         })
+         }*/}
       </span>
     </div>
   )
